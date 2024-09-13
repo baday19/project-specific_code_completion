@@ -1,0 +1,38 @@
+Act as an expert Python programmer. Given a function code or a fragment, summarize it with a short sentence.
+
+Here are two examples:
+
+code:
+def hydrate_time(nanoseconds, tz=None):
+    from pytz import FixedOffset
+    seconds, nanoseconds = map(int, divmod(nanoseconds, 1000000000))
+    minutes, seconds = map(int, divmod(seconds, 60))
+    hours, minutes = map(int, divmod(minutes, 60))
+    t = Time(hours, minutes, seconds, nanoseconds)
+    if tz is None:
+        return t
+    tz_offset_minutes, tz_offset_seconds = divmod(tz, 60)
+    zone = FixedOffset(tz_offset_minutes)
+    return zone.localize(t)
+
+summary:
+Convert nanoseconds to a time in fixed format
+
+code:
+def get_logical_path_map(inventory, version):
+    state = inventory['versions'][version]['state']
+    manifest = inventory['manifest']
+    file_map = {}
+    for digest in state:
+        if digest in manifest:
+            for file in state[digest]:
+                file_map[file] = set(manifest[digest])
+    return file_map
+
+summary:
+Returns the file paths of the states in the inventory in the dict type
+
+Please answer strictly in the examples format and do not add extra sentences!
+code:
+@{}@
+summary:

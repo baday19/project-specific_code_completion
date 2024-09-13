@@ -1,0 +1,39 @@
+Act as an expert Java programmer. Given a function code or a fragment, summarize it with a short sentence.
+
+Here are two examples:
+
+code:
+public static <T>int writeDelimitedTo(OutputStream out,T message,Schema<T> schema,LinkedBuffer buffer) throws IOException {
+  if (buffer.start != buffer.offset)   throw new IllegalArgumentException("Buffer previously used and had not been reset.");
+  final ProtobufOutput output=new ProtobufOutput(buffer);
+  schema.writeTo(output,message);
+  final int size=output.getSize();
+  ProtobufOutput.writeRawVarInt32Bytes(out,size);
+  final int msgSize=LinkedBuffer.writeTo(out,buffer);
+  assert size == msgSize;
+  return size;
+}
+
+summary:
+Use ProtobufOutput and the LinkedBuffer to write the message into the given OutputStream out, and return the message size
+
+code:
+public static void selectRow(int row,JTable table,JScrollPane pane){
+  if (table == null || pane == null) {
+    return;
+  }
+  if (contains(row,table.getModel()) == false) {
+    return;
+  }
+  moveAdjustable(row * table.getRowHeight(),pane.getVerticalScrollBar());
+  selectRow(row,table.getSelectionModel());
+  repaintLater(table);
+}
+
+summary:
+Select the specified row in the given JTable and scroll the given JScrollPane to the row
+
+Please answer strictly in the examples format and do not add extra sentences!
+code:
+@{}@
+summary:

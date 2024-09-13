@@ -1,0 +1,5 @@
+tree-sitter           0.21.3
+tree-sitter-languages 1.10.2
+transformers          4.40.0
+tiktoken              0.7.0
+editdistance          0.8.1
